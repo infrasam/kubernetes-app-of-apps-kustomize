@@ -1,6 +1,3 @@
-# OLM: grunden för att installera operatorer som på OpenShift.
-# Deployas först (wave -10), eftersom alla operatorer, även ArgoCD, är beroende av den.
-# Uppströms chart vid låst tagg, med samma image-digests som release v0.46.0.
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -33,7 +30,7 @@ spec:
     server: https://kubernetes.default.svc
   syncPolicy:
     automated:
-      prune: false      # OLM ska aldrig tas bort automatiskt
+      prune: false
       selfHeal: true
     syncOptions:
-      - ServerSideApply=true   # CRD:erna är för stora för klientsidig apply
+      - ServerSideApply=true
